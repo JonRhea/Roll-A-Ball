@@ -12,9 +12,11 @@ public class PlayerController : MonoBehaviour {
 
     private Rigidbody rb;
     private int count;
+	private GameObject player;
 
     void Start ()
     {
+		player = GameObject.Find("Player");
         rb = GetComponent<Rigidbody>();
         count = 0;
         SetCountText ();
@@ -39,6 +41,12 @@ public class PlayerController : MonoBehaviour {
             count = count + 1;
             SetCountText ();
         }
+		if (other.gameObject.CompareTag ( "Hole"))
+		{
+			player.SetActive(false);
+			winText.text = "You Lose!";
+			
+		}
     }
 
     void SetCountText ()
